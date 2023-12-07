@@ -1,0 +1,30 @@
+<.header>
+  Webinar <%= @webinar.id %>
+  <:subtitle>This is a webinar record from your database.</:subtitle>
+  <:actions>
+    <.link patch={~p"/webinars/#{@webinar}/show/edit"} phx-click={JS.push_focus()}>
+      <.button>Edit webinar</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Title"><%= @webinar.title %></:item>
+  <:item title="Description"><%= @webinar.description %></:item>
+  <:item title="Image"><%= @webinar.image %></:item>
+  <:item title="Url"><%= @webinar.url %></:item>
+  <:item title="Start time"><%= @webinar.start_time %></:item>
+</.list>
+
+<.back navigate={~p"/webinars"}>Back to webinars</.back>
+
+<.modal :if={@live_action == :edit} id="webinar-modal" show on_cancel={JS.patch(~p"/webinars/#{@webinar}")}>
+  <.live_component
+    module={DocclaCommunityWeb.WebinarLive.FormComponent}
+    id={@webinar.id}
+    title={@page_title}
+    action={@live_action}
+    webinar={@webinar}
+    patch={~p"/webinars/#{@webinar}"}
+  />
+</.modal>

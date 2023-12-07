@@ -81,5 +81,13 @@ defmodule DocclaCommunityWeb.Router do
       live "/users/confirm/:token", UserConfirmationLive, :edit
       live "/users/confirm", UserConfirmationInstructionsLive, :new
     end
+
+
+    live "/webinars", WebinarLive.Index, :index
+    live "/webinars/new", WebinarLive.Index, :new
+    live "/webinars/:id/edit", WebinarLive.Index, :edit
+
+    live "/webinars/:id", WebinarLive.Show, :show
+    live "/webinars/:id/show/edit", WebinarLive.Show, :edit
   end
 end

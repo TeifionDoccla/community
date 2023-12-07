@@ -1,0 +1,45 @@
+<.header>
+  Listing Webinars
+  <:actions>
+    <.link patch={~p"/webinars/new"}>
+      <.button>New Webinar</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="webinars"
+  rows={@streams.webinars}
+  row_click={fn {_id, webinar} -> JS.navigate(~p"/webinars/#{webinar}") end}
+>
+  <:col :let={{_id, webinar}} label="Title"><%= webinar.title %></:col>
+  <:col :let={{_id, webinar}} label="Description"><%= webinar.description %></:col>
+  <:col :let={{_id, webinar}} label="Image"><%= webinar.image %></:col>
+  <:col :let={{_id, webinar}} label="Url"><%= webinar.url %></:col>
+  <:col :let={{_id, webinar}} label="Start time"><%= webinar.start_time %></:col>
+  <:action :let={{_id, webinar}}>
+    <div class="sr-only">
+      <.link navigate={~p"/webinars/#{webinar}"}>Show</.link>
+    </div>
+    <.link patch={~p"/webinars/#{webinar}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, webinar}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: webinar.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="webinar-modal" show on_cancel={JS.patch(~p"/webinars")}>
+  <.live_component
+    module={DocclaCommunityWeb.WebinarLive.FormComponent}
+    id={@webinar.id || :new}
+    title={@page_title}
+    action={@live_action}
+    webinar={@webinar}
+    patch={~p"/webinars"}
+  />
+</.modal>
