@@ -81,7 +81,10 @@ defmodule DocclaCommunityWeb.Router do
       live "/users/confirm/:token", UserConfirmationLive, :edit
       live "/users/confirm", UserConfirmationInstructionsLive, :new
     end
+  end
 
+  scope "/", DocclaCommunityWeb.Events do
+    pipe_through [:browser]
 
     live "/webinars", WebinarLive.Index, :index
     live "/webinars/new", WebinarLive.Index, :new
@@ -89,5 +92,11 @@ defmodule DocclaCommunityWeb.Router do
 
     live "/webinars/:id", WebinarLive.Show, :show
     live "/webinars/:id/show/edit", WebinarLive.Show, :edit
+  end
+
+  scope "/", DocclaCommunityWeb.Events do
+    pipe_through [:api]
+
+    resources "/json/webinars", WebinarController, except: [:new, :edit]
   end
 end

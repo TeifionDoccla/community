@@ -1,4 +1,4 @@
-defmodule DocclaCommunityWeb.WebinarLive.Index do
+defmodule DocclaCommunityWeb.Events.WebinarLive.Index do
   use DocclaCommunityWeb, :live_view
 
   alias DocclaCommunity.Events
@@ -33,7 +33,7 @@ defmodule DocclaCommunityWeb.WebinarLive.Index do
   end
 
   @impl true
-  def handle_info({DocclaCommunityWeb.WebinarLive.FormComponent, {:saved, webinar}}, socket) do
+  def handle_info({DocclaCommunityWeb.Events.WebinarLive.FormComponent, {:saved, webinar}}, socket) do
     {:noreply, stream_insert(socket, :webinars, webinar)}
   end
 

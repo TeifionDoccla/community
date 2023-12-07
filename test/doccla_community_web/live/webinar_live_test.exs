@@ -1,4 +1,4 @@
-defmodule DocclaCommunityWeb.WebinarLiveTest do
+defmodule DocclaCommunityWeb.Events.WebinarLiveTest do
   use DocclaCommunityWeb.ConnCase
 
   import Phoenix.LiveViewTest

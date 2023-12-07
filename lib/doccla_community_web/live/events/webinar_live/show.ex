@@ -1,4 +1,4 @@
-defmodule DocclaCommunityWeb.WebinarLive.Show do
+defmodule DocclaCommunityWeb.Events.WebinarLive.Show do
   use DocclaCommunityWeb, :live_view
 
   alias DocclaCommunity.Events

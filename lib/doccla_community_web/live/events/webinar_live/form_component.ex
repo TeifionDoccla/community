@@ -1,4 +1,4 @@
-defmodule DocclaCommunityWeb.WebinarLive.FormComponent do
+defmodule DocclaCommunityWeb.Events.WebinarLive.FormComponent do
   use DocclaCommunityWeb, :live_component
 
   alias DocclaCommunity.Events
