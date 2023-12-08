@@ -17,6 +17,6 @@ defmodule DocclaCommunity.Events.Webinar do
   def changeset(webinar, attrs) do
     webinar
     |> cast(attrs, ~w(host_id title description image url start_time)a)
-    |> validate_required(~w(title url start_time)a)
+    # |> validate_required(~w(title url start_time)a)
   end
 end
